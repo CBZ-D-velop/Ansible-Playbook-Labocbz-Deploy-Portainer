@@ -71,6 +71,8 @@
         - name: "Include labocbz.prepare_host"
           tags:
             - "labocbz.prepare_host"
+          vars:
+            prepare_host_system_users: "{{ inv_prepare_host_apache_system_users }}"
           ansible.builtin.include_role:
             name: "labocbz.prepare_host"
 
@@ -138,7 +140,7 @@
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
-            logrotate_configurations: "{{ inv_logrotate_configurations_apache }}"
+            logrotate_configurations: "{{ inv_logrotate_apache_configurations }}"
           ansible.builtin.include_role:
             name: "labocbz.add_logrotate_confs"
 

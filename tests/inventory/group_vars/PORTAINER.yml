@@ -10,3 +10,26 @@ inv_install_docker_portainer_ssl: true
 inv_install_docker_portainer_ssl_path: "/etc/docker/ssl/portainer"
 inv_install_docker_portainer_ssl_cert: "{{ inv_install_docker_portainer_ssl_path }}/my-portainer-server.domain.tld/my-portainer-server.domain.tld.pem.crt"
 inv_install_docker_portainer_ssl_key: "{{ inv_install_docker_portainer_ssl_path }}/my-portainer-server.domain.tld/my-portainer-server.domain.tld.pem.key"
+
+inv_deploy_docker_cert_bundles:
+  - name: "My-Local-Ansible-Root-CA.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Root-CA.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-1.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-1.pem.crt"
+
+  - name: "My-Local-Ansible-Intermediate-CA-2.pem.crt"
+    type: "CA"
+    src: "/tmp/My-Local-Ansible-Intermediate-CA-2.pem.crt"
+
+  - name: "my-portainer-server.domain.tld"
+    type: "cert"
+    src: "/tmp/my-portainer-server.domain.tld.zip"
+    dest: "{{ inv_install_docker_portainer_ssl_path }}"
+    #src_user: "myUser"
+    #src_password: "secretPassword"
+    dest_user: "root"
+    dest_group: "root"
+    dest_mode: "0700"
