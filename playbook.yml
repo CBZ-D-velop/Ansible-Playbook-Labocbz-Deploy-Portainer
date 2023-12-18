@@ -2,12 +2,10 @@
 - name: "Deploy Docker and Portainer"
   hosts: "{{ tower_env | default([]) }}"
   gather_facts: true
-  remote_user: root
   become: true
   become_method: sudo
   become_user: root
-  tags:
-    - "labocbz.install_docker"
+
   tasks:
 
     - name: "Install Docker and Portainer"
@@ -66,19 +64,6 @@
             install_docker_clean_hour: "{{ inv_install_docker_clean_hour }}"
           ansible.builtin.include_role:
             name: "labocbz.install_docker"
-
-- name: "Install Apache2"
-  hosts: "{{ tower_env | default([]) }}"
-  gather_facts: true
-  remote_user: root
-  strategy: free
-  become: true
-  become_method: sudo
-  become_user: root
-  tags:
-    - "labocbz.install_apache"
-
-  tasks:
 
     - name: "Install Apache2"
       when: inv_install_apache | default(false)
@@ -156,3 +141,21 @@
             logrotate_configurations: "{{ inv_logrotate_configurations_apache }}"
           ansible.builtin.include_role:
             name: "labocbz.add_logrotate_confs"
+
+        - name: "Block all trafic from other hosts on port Portainer HTTP (disable acces to Portainer without Apache2)"
+          ansible.builtin.iptables:
+            chain: "INPUT"
+            protocol: "tcp"
+            destination_port: "{{ inv_install_docker_portainer_http_port }}"
+            jump: "DROP"
+            source: "! 127.0.0.1"
+            comment: "Force external user to use Apache2"
+
+        - name: "Block all trafic from other hosts on port Portainer HTTPS (disable acces to Portainer without Apache2)"
+          ansible.builtin.iptables:
+            chain: "INPUT"
+            protocol: "tcp"
+            destination_port: "{{ inv_install_docker_portainer_https_port }}"
+            jump: "DROP"
+            source: "! 127.0.0.1"
+            comment: "Force external user to use Apache2"

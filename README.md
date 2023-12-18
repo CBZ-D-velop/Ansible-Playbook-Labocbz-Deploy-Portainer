@@ -105,6 +105,12 @@ Here you can put your change to keep a trace of your work and decisions.
 * Install and configuration ok
 * Added readme and schemas
 
+### 2023-12-18: Iptables and system users
+
+* Now you have to install Apache2 on the same host as Portainer
+* Iptables rules handled to block without Apache2 / from another host
+* Logs handled done
+
 ## Authors
 
 * Lord Robin Crombez
