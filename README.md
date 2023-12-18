@@ -105,6 +105,12 @@ Here you can put your change to keep a trace of your work and decisions.
 * Install and configuration ok
 * Added readme and schemas
 
+### 2023-12-18: Logs and users
+
+* Playbook handle system users
+* Certs can now be deployed for Portainer
+* Use latest versions of roles
+
 ## Authors
 
 * Lord Robin Crombez

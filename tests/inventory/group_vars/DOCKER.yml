@@ -3,9 +3,9 @@ inv_install_docker: false
 
 inv_install_docker_compose_version: "2.17.2"
 
-inv_install_docker_insecure_registries:
-  - "http://nexus.net3103.services.labo-cbz.net:8082"
-  - "http://nexus.net3103.services.labo-cbz.net:8083"
+#inv_install_docker_insecure_registries:
+#  - "registry.one.domain.tld"
+#  - "registry.two.domain.tld"
 
 inv_install_docker_portainer: false
 #inv_install_docker_portainer_http_port: 9001
@@ -18,7 +18,7 @@ inv_install_docker_portainer: false
 #inv_install_docker_portainer_ssl_cert: "{{ inv_install_docker_portainer_ssl_path }}/my-portainer.domain.tld/my-portainer.domain.tld.pem.crt"
 #inv_install_docker_portainer_ssl_key: "{{ inv_install_docker_portainer_ssl_path }}/my-portainer.domain.tld/my-portainer.domain.tld.pem.key"
 
-inv_install_docker_watchtower: true
+inv_install_docker_watchtower: false
 inv_install_docker_watchtower_container_name: "watchtower"
 inv_install_docker_watchtower_poll_interval: 3600
 inv_install_docker_watchtower_cleanup: "true"

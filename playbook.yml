@@ -2,12 +2,10 @@
 - name: "Deploy Docker and Portainer"
   hosts: "{{ tower_env | default([]) }}"
   gather_facts: true
-  remote_user: root
   become: true
   become_method: sudo
   become_user: root
-  tags:
-    - "labocbz.install_docker"
+
   tasks:
 
     - name: "Install Docker and Portainer"
@@ -67,25 +65,14 @@
           ansible.builtin.include_role:
             name: "labocbz.install_docker"
 
-- name: "Install Apache2"
-  hosts: "{{ tower_env | default([]) }}"
-  gather_facts: true
-  remote_user: root
-  strategy: free
-  become: true
-  become_method: sudo
-  become_user: root
-  tags:
-    - "labocbz.install_apache"
-
-  tasks:
-
     - name: "Install Apache2"
       when: inv_install_apache | default(false)
       block:
         - name: "Include labocbz.prepare_host"
           tags:
             - "labocbz.prepare_host"
+          vars:
+            prepare_host_system_users: "{{ inv_prepare_host_apache_system_users }}"
           ansible.builtin.include_role:
             name: "labocbz.prepare_host"
 
@@ -153,6 +140,6 @@
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
-            logrotate_configurations: "{{ inv_logrotate_configurations_apache }}"
+            logrotate_configurations: "{{ inv_logrotate_apache_configurations }}"
           ansible.builtin.include_role:
             name: "labocbz.add_logrotate_confs"

@@ -14,9 +14,9 @@ platforms:
     published_ports:
       - "0.0.0.0:80:80/tcp"
       - "0.0.0.0:443:443/tcp"
-      - "0.0.0.0:9000:9000/tcp"
-      - "0.0.0.0:8000:8000/tcp"
-      - "0.0.0.0:9443:9443/tcp"
+      #- "0.0.0.0:9000:9000/tcp"
+      #- "0.0.0.0:8000:8000/tcp"
+      #- "0.0.0.0:9443:9443/tcp"
     dockerfile: "Dockerfile"
     privileged: true
     pre_build_image: true
