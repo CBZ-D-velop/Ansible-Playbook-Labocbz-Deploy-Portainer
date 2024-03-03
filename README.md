@@ -111,6 +111,22 @@ Here you can put your change to keep a trace of your work and decisions.
 * Iptables rules handled to block without Apache2 / from another host
 * Logs handled done
 
+### 2024-03-02: Fix and CI
+
+* Added support for new CI base
+* Edit all vars with __
+* Tested and validated on Docker
+* Added support for Debian 11/12
+* Added support for Ubuntu
+
+### 2024-03-03: New CICD and fixes
+
+* Added support for Ubuntu 22
+* Added support for Debian 11/22
+* Edited vars for linting (role name and __)
+* Added generic support for Docker dind (can add used for obscures reasons ... user in use)
+* Fix idempotency
+
 ## Authors
 
 * Lord Robin Crombez

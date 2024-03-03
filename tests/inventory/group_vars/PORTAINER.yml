@@ -1,15 +1,15 @@
 ---
-inv_install_docker_portainer: false
-inv_install_docker_portainer_http_port: 9000
-inv_install_docker_portainer_https_port: 9443
-inv_install_docker_portainer_agent_port: 8000
-inv_install_docker_portainer_address: "0.0.0.0"
-inv_install_docker_portainer_container_name: "portainer-ce"
-inv_install_docker_portainer_volume_name: "portainer_data"
-inv_install_docker_portainer_ssl: true
-inv_install_docker_portainer_ssl_path: "/etc/docker/ssl/portainer"
-inv_install_docker_portainer_ssl_cert: "{{ inv_install_docker_portainer_ssl_path }}/my-portainer-server.domain.tld/my-portainer-server.domain.tld.pem.crt"
-inv_install_docker_portainer_ssl_key: "{{ inv_install_docker_portainer_ssl_path }}/my-portainer-server.domain.tld/my-portainer-server.domain.tld.pem.key"
+inv_install_docker__portainer: true
+inv_install_docker__portainer_http_port: 9000
+inv_install_docker__portainer_https_port: 9443
+inv_install_docker__portainer_agent_port: 8000
+inv_install_docker__portainer_address: "0.0.0.0"
+inv_install_docker__portainer_container_name: "portainer-ce"
+inv_install_docker__portainer_volume_name: "portainer_data"
+inv_install_docker__portainer_ssl: true
+inv_install_docker__portainer_ssl_path: "/etc/docker/ssl/portainer"
+inv_install_docker__portainer_ssl_cert: "{{ inv_install_docker__portainer_ssl_path }}/my-portainer-server.domain.tld/my-portainer-server.domain.tld.pem.crt"
+inv_install_docker__portainer_ssl_key: "{{ inv_install_docker__portainer_ssl_path }}/my-portainer-server.domain.tld/my-portainer-server.domain.tld.pem.key"
 
 inv_deploy_docker_cert_bundles:
   - name: "My-Local-Ansible-Root-CA.pem.crt"
@@ -27,7 +27,7 @@ inv_deploy_docker_cert_bundles:
   - name: "my-portainer-server.domain.tld"
     type: "cert"
     src: "/tmp/my-portainer-server.domain.tld.zip"
-    dest: "{{ inv_install_docker_portainer_ssl_path }}"
+    dest: "{{ inv_install_docker__portainer_ssl_path }}"
     #src_user: "myUser"
     #src_password: "secretPassword"
     dest_user: "root"

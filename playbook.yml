@@ -25,15 +25,15 @@
             loop_var: bundle
           when: inv_deploy_docker_cert_bundles is defined
           vars:
-            add_certificates_bundle_name: "{{ bundle.name }}"
-            add_certificates_bundle_type: "{{ bundle.type }}"
-            add_certificates_bundle_src: "{{ bundle.src }}"
-            add_certificates_bundle_dest: "{{ bundle.dest }}"
-            add_certificates_bundle_src_user: "{{ bundle.src_user }}"
-            add_certificates_bundle_src_password: "{{ bundle.src_password }}"
-            add_certificates_bundle_dest_user: "{{ bundle.dest_user }}"
-            add_certificates_bundle_dest_group: "{{ bundle.dest_group }}"
-            add_certificates_bundle_dest_mode: "{{ bundle.dest_mode }}"
+            add_certificates__bundle_name: "{{ bundle.name }}"
+            add_certificates__bundle_type: "{{ bundle.type }}"
+            add_certificates__bundle_src: "{{ bundle.src }}"
+            add_certificates__bundle_dest: "{{ bundle.dest }}"
+            add_certificates__bundle_src_user: "{{ bundle.src_user }}"
+            add_certificates__bundle_src_password: "{{ bundle.src_password }}"
+            add_certificates__bundle_dest_user: "{{ bundle.dest_user }}"
+            add_certificates__bundle_dest_group: "{{ bundle.dest_group }}"
+            add_certificates__bundle_dest_mode: "{{ bundle.dest_mode }}"
           ansible.builtin.include_role:
             name: "labocbz.add_certificates"
 
@@ -41,28 +41,28 @@
           tags:
             - "labocbz.install_docker"
           vars:
-            install_docker_portainer: "{{ inv_install_docker_portainer }}"
-            install_docker_portainer_http_port: "{{ inv_install_docker_portainer_http_port }}"
-            install_docker_portainer_https_port: "{{ inv_install_docker_portainer_https_port }}"
-            install_docker_portainer_agent_port: "{{ inv_install_docker_portainer_agent_port }}"
-            install_docker_portainer_container_name: "{{ inv_install_docker_portainer_container_name }}"
-            install_docker_portainer_volume_name: "{{ inv_install_docker_portainer_volume_name }}"
-            install_docker_portainer_ssl: "{{ inv_install_docker_portainer_ssl }}"
-            install_docker_portainer_ssl_volume_name: "{{ inv_install_docker_portainer_ssl_volume_name }}"
-            install_docker_portainer_ssl_key: "{{ inv_install_docker_portainer_ssl_cert }}"
-            install_docker_watchtower: "{{ inv_install_docker_watchtower }}"
-            install_docker_watchtower_poll_interval: "{{ inv_install_docker_watchtower_poll_interval }}"
-            install_docker_watchtower_cleanup: "{{ inv_install_docker_watchtower_cleanup }}"
-            install_docker_watchtower_include_restarting: "{{ inv_install_docker_watchtower_include_restarting }}"
-            install_docker_watchtower_include_stopped: "{{ inv_install_docker_watchtower_include_stopped }}"
-            install_docker_watchtower_no_restart: "{{ inv_install_docker_watchtower_no_restart }}"
-            install_docker_portainer_address: "{{ inv_install_docker_portainer_address }}"
-            install_docker_handle_clean: "{{ inv_install_docker_handle_clean }}"
-            install_docker_clean_cron_file: "{{ inv_install_docker_clean_cron_file }}"
-            install_docker_clean_weekday: "{{ inv_install_docker_clean_weekday }}"
-            install_docker_clean_minute: "{{ inv_install_docker_clean_minute }}"
-            install_docker_clean_hour: "{{ inv_install_docker_clean_hour }}"
-            install_docker_insecure_registries: "{{ inv_install_docker_insecure_registries }}"
+            install_docker__portainer: "{{ inv_install_docker__portainer }}"
+            install_docker__portainer_http_port: "{{ inv_install_docker__portainer_http_port }}"
+            install_docker__portainer_https_port: "{{ inv_install_docker__portainer_https_port }}"
+            install_docker__portainer_agent_port: "{{ inv_install_docker__portainer_agent_port }}"
+            install_docker__portainer_container_name: "{{ inv_install_docker__portainer_container_name }}"
+            install_docker__portainer_volume_name: "{{ inv_install_docker__portainer_volume_name }}"
+            install_docker__portainer_ssl: "{{ inv_install_docker__portainer_ssl }}"
+            install_docker__portainer_ssl_volume_name: "{{ inv_install_docker__portainer_ssl_volume_name }}"
+            install_docker__portainer_ssl_key: "{{ inv_install_docker__portainer_ssl_cert }}"
+            install_docker__watchtower: "{{ inv_install_docker__watchtower }}"
+            install_docker__watchtower_poll_interval: "{{ inv_install_docker__watchtower_poll_interval }}"
+            install_docker__watchtower_cleanup: "{{ inv_install_docker__watchtower_cleanup }}"
+            install_docker__watchtower_include_restarting: "{{ inv_install_docker__watchtower_include_restarting }}"
+            install_docker__watchtower_include_stopped: "{{ inv_install_docker__watchtower_include_stopped }}"
+            install_docker__watchtower_no_restart: "{{ inv_install_docker__watchtower_no_restart }}"
+            install_docker__portainer_address: "{{ inv_install_docker__portainer_address }}"
+            install_docker__handle_clean: "{{ inv_install_docker__handle_clean }}"
+            install_docker__clean_cron_file: "{{ inv_install_docker__clean_cron_file }}"
+            install_docker__clean_weekday: "{{ inv_install_docker__clean_weekday }}"
+            install_docker__clean_minute: "{{ inv_install_docker__clean_minute }}"
+            install_docker__clean_hour: "{{ inv_install_docker__clean_hour }}"
+            install_docker__insecure_registries: "{{ inv_install_docker__insecure_registries }}"
           ansible.builtin.include_role:
             name: "labocbz.install_docker"
 
@@ -73,27 +73,27 @@
           tags:
             - "labocbz.prepare_host"
           vars:
-            prepare_host_system_users: "{{ inv_prepare_host_apache_system_users }}"
+            prepare_host__system_users: "{{ inv_prepare_host__apache_system_users }}"
           ansible.builtin.include_role:
             name: "labocbz.prepare_host"
 
         - name: "Include labocbz.add_certificates"
           tags:
             - "labocbz.add_certificates"
-          loop: "{{ inv_add_apache_confs_configurations_cert_bundles }}"
+          loop: "{{ inv_add_apache_confs__configurations_cert_bundles }}"
           loop_control:
             loop_var: bundle
-          when: inv_add_apache_confs_configurations_cert_bundles is defined
+          when: inv_add_apache_confs__configurations_cert_bundles is defined
           vars:
-            add_certificates_bundle_name: "{{ bundle.name }}"
-            add_certificates_bundle_type: "{{ bundle.type }}"
-            add_certificates_bundle_src: "{{ bundle.src }}"
-            add_certificates_bundle_dest: "{{ bundle.dest }}"
-            add_certificates_bundle_src_user: "{{ bundle.src_user }}"
-            add_certificates_bundle_src_password: "{{ bundle.src_password }}"
-            add_certificates_bundle_dest_user: "{{ bundle.dest_user }}"
-            add_certificates_bundle_dest_group: "{{ bundle.dest_group }}"
-            add_certificates_bundle_dest_mode: "{{ bundle.dest_mode }}"
+            add_certificates__bundle_name: "{{ bundle.name }}"
+            add_certificates__bundle_type: "{{ bundle.type }}"
+            add_certificates__bundle_src: "{{ bundle.src }}"
+            add_certificates__bundle_dest: "{{ bundle.dest }}"
+            add_certificates__bundle_src_user: "{{ bundle.src_user }}"
+            add_certificates__bundle_src_password: "{{ bundle.src_password }}"
+            add_certificates__bundle_dest_user: "{{ bundle.dest_user }}"
+            add_certificates__bundle_dest_group: "{{ bundle.dest_group }}"
+            add_certificates__bundle_dest_mode: "{{ bundle.dest_mode }}"
           ansible.builtin.include_role:
             name: "labocbz.add_certificates"
 
@@ -101,18 +101,18 @@
           tags:
             - "labocbz.install_apache"
           vars:
-            install_apache_https_listen_port: "{{ inv_install_apache_https_listen_port }}"
-            install_apache_http_listen_port: "{{ inv_install_apache_http_listen_port }}"
-            install_apache_modules: "{{ inv_install_apache_modules }}"
-            install_apache_enable_qos: "{{ inv_install_apache_enable_qos }}"
-            install_apache_enable_security: "{{ inv_install_apache_enable_security }}"
-            install_apache_security_core_version: "{{ inv_install_apache_security_core_version }}"
-            install_apache_remove_all_vhosts: "{{ inv_install_apache_remove_all_vhosts }}"
-            install_apache_loglevel: "{{ inv_install_apache_loglevel }}"
-            install_apache_security_version: "{{ inv_install_apache_security_version }}"
-            install_apache_enable_evasive: "{{ inv_install_apache_enable_evasive }}"
-            install_apache_enable_pagespeed: "{{ inv_install_apache_enable_pagespeed }}"
-            install_apache_enable_prefork: "{{ inv_install_apache_enable_prefork }}"
+            install_apache__https_listen_port: "{{ inv_install_apache__https_listen_port }}"
+            install_apache__http_listen_port: "{{ inv_install_apache__http_listen_port }}"
+            install_apache__modules: "{{ inv_install_apache__modules }}"
+            install_apache__enable_qos: "{{ inv_install_apache__enable_qos }}"
+            install_apache__enable_security: "{{ inv_install_apache__enable_security }}"
+            install_apache__security_core_version: "{{ inv_install_apache__security_core_version }}"
+            install_apache__remove_all_vhosts: "{{ inv_install_apache__remove_all_vhosts }}"
+            install_apache__loglevel: "{{ inv_install_apache__loglevel }}"
+            install_apache__security_version: "{{ inv_install_apache__security_version }}"
+            install_apache__enable_evasive: "{{ inv_install_apache__enable_evasive }}"
+            install_apache__enable_pagespeed: "{{ inv_install_apache__enable_pagespeed }}"
+            install_apache__enable_prefork: "{{ inv_install_apache__enable_prefork }}"
           ansible.builtin.include_role:
             name: "labocbz.install_apache"
 
@@ -120,20 +120,20 @@
           tags:
             - "labocbz.add_apache_confs"
           vars:
-            add_apache_confs_http_listen_port: "{{ inv_add_apache_confs_http_listen_port }}"
-            add_apache_confs_https_listen_port: "{{ inv_add_apache_confs_https_listen_port }}"
-            add_apache_confs_ldap_url: "{{ inv_add_apache_confs_ldap_url }}"
-            add_apache_confs_ldap_port: "{{ inv_add_apache_confs_ldap_port }}"
-            add_apache_confs_ldap_dc: "{{ inv_add_apache_confs_ldap_dc }}"
-            add_apache_confs_auth_ldap_url: "{{ inv_add_apache_confs_auth_ldap_url }}"
-            add_apache_confs_custom_ldap_base_header: "{{ inv_add_apache_confs_custom_ldap_base_header }}"
-            add_apache_confs_webmaster: "{{ inv_add_apache_confs_webmaster }}"
-            add_apache_confs_request_body: "{{ inv_add_apache_confs_request_body }}"
-            add_apache_confs_security_body_limit: "{{ inv_add_apache_confs_security_body_limit }}"
-            add_apache_confs_ssl_files_path: "{{ inv_add_apache_confs_ssl_files_path }}"
-            add_apache_confs_conf_path: "{{ inv_add_apache_confs_conf_path }}"
-            add_apache_confs_base_document_root: "{{ inv_add_apache_confs_base_document_root }}"
-            add_apache_confs_configurations: "{{ inv_add_apache_confs_configurations }}"
+            add_apache_confs__http_listen_port: "{{ inv_add_apache_confs__http_listen_port }}"
+            add_apache_confs__https_listen_port: "{{ inv_add_apache_confs__https_listen_port }}"
+            add_apache_confs__ldap_url: "{{ inv_add_apache_confs__ldap_url }}"
+            add_apache_confs__ldap_port: "{{ inv_add_apache_confs__ldap_port }}"
+            add_apache_confs__ldap_dc: "{{ inv_add_apache_confs__ldap_dc }}"
+            add_apache_confs__auth_ldap_url: "{{ inv_add_apache_confs__auth_ldap_url }}"
+            add_apache_confs__custom_ldap_base_header: "{{ inv_add_apache_confs__custom_ldap_base_header }}"
+            add_apache_confs__webmaster: "{{ inv_add_apache_confs__webmaster }}"
+            add_apache_confs__request_body: "{{ inv_add_apache_confs__request_body }}"
+            add_apache_confs__security_body_limit: "{{ inv_add_apache_confs__security_body_limit }}"
+            add_apache_confs__ssl_files_path: "{{ inv_add_apache_confs__ssl_files_path }}"
+            add_apache_confs__conf_path: "{{ inv_add_apache_confs__conf_path }}"
+            add_apache_confs__base_document_root: "{{ inv_add_apache_confs__base_document_root }}"
+            add_apache_confs__configurations: "{{ inv_add_apache_confs__configurations }}"
           ansible.builtin.include_role:
             name: "labocbz.add_apache_confs"
 
@@ -141,7 +141,7 @@
           tags:
             - "labocbz.add_logrotate_confs"
           vars:
-            logrotate_configurations: "{{ inv_logrotate_apache_configurations }}"
+            add_logrotate_confs__files: "{{ inv_add_logrotate_confs__apache_configurations }}"
           ansible.builtin.include_role:
             name: "labocbz.add_logrotate_confs"
 
@@ -149,7 +149,7 @@
           ansible.builtin.iptables:
             chain: "INPUT"
             protocol: "tcp"
-            destination_port: "{{ inv_install_docker_portainer_http_port }}"
+            destination_port: "{{ inv_install_docker__portainer_http_port }}"
             jump: "DROP"
             source: "! 127.0.0.1"
             comment: "Force external user to use Apache2"
@@ -158,7 +158,7 @@
           ansible.builtin.iptables:
             chain: "INPUT"
             protocol: "tcp"
-            destination_port: "{{ inv_install_docker_portainer_https_port }}"
+            destination_port: "{{ inv_install_docker__portainer_https_port }}"
             jump: "DROP"
             source: "! 127.0.0.1"
             comment: "Force external user to use Apache2"
