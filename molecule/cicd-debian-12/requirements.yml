@@ -1,0 +1,18 @@
+---
+- name: "labocbz.prepare_host"
+  src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Prepare-Host.git"
+
+- name: "labocbz.add_certificates"
+  src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Add-Certificates.git"
+
+- name: "labocbz.install_docker"
+  src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Docker.git"
+
+- name: "labocbz.install_apache"
+  src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Install-Apache.git"
+
+- name: "labocbz.add_apache_confs"
+  src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Add-Apache-Confs.git"
+
+- name: "labocbz.add_logrotate_confs"
+  src: "https://github.com/CBZ-D-velop/Ansible-Role-Labocbz-Add-Logrotate-Confs.git"
