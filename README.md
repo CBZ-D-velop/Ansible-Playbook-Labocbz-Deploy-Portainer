@@ -117,6 +117,14 @@ Here you can put your change to keep a trace of your work and decisions.
 * Edit all vars with __
 * Tested and validated on Docker
 
+### 2024-03-03: New CICD and fixes
+
+* Added support for Ubuntu 22
+* Added support for Debian 11/22
+* Edited vars for linting (role name and __)
+* Added generic support for Docker dind (can add used for obscures reasons ... user in use)
+* Fix idempotency
+
 ## Authors
 
 * Lord Robin Crombez
