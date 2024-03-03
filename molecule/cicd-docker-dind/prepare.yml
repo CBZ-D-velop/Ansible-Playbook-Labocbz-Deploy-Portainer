@@ -1,7 +1,7 @@
 ---
 # if you have any prepararion task
 - name: "Prepare"
-  hosts: "all"
+  hosts: "cicd-docker-dind"
   gather_facts: true
   tasks:
 
@@ -17,22 +17,16 @@
     - name: "Gather facts from all hosts"
       delegate_to: "{{ item }}"
       delegate_facts: true
-      loop: "{{ groups['all'] }}"
+      loop: "{{ groups['cicd-docker-dind'] }}"
       ansible.builtin.setup:
 
     - name: "Edit /etc/hosts file to add all hosts"
-      loop: "{{ groups['all'] }}"
+      loop: "{{ groups['cicd-docker-dind'] }}"
       loop_control:
         loop_var: host
       register: output
       changed_when: output.rc != 0
       ansible.builtin.shell: "echo \"{{ hostvars[host]['ansible_default_ipv4']['address'] }}  {{ host }} # from Molecule\" >> /etc/hosts"
-
-# if you have any prepararion task
-- name: "Prepare Docker"
-  hosts: "all:&DOCKER"
-  gather_facts: true
-  tasks:
 
     - name: "Import cryptographic content if needed (cert)"
       loop: "{{ inv_docker_cert_bundles }}"
@@ -58,17 +52,11 @@
         group: "root"
         mode: 0700
 
-# if you have any prepararion task
-- name: "Prepare APACHE2"
-  hosts: "all:&APACHE2"
-  gather_facts: true
-  tasks:
-
     - name: "Import cryptographic content if needed (cert)"
-      loop: "{{ inv_add_apache_confs_configurations_cert_bundles }}"
+      loop: "{{ inv_add_apache_confs__configurations_cert_bundles }}"
       loop_control:
         loop_var: bundle
-      when: inv_add_apache_confs_configurations_cert_bundles is defined and bundle.type == "cert"
+      when: inv_add_apache_confs__configurations_cert_bundles is defined and bundle.type == "cert"
       ansible.builtin.copy:
         src: "../../tests/certs/{{ bundle.name }}.zip"
         dest: "/tmp/{{ bundle.name }}.zip"
@@ -77,10 +65,10 @@
         mode: 0700
 
     - name: "Import cryptographic content if needed (CA)"
-      loop: "{{ inv_add_apache_confs_configurations_cert_bundles }}"
+      loop: "{{ inv_add_apache_confs__configurations_cert_bundles }}"
       loop_control:
         loop_var: bundle
-      when: inv_add_apache_confs_configurations_cert_bundles is defined and bundle.type == "CA"
+      when: inv_add_apache_confs__configurations_cert_bundles is defined and bundle.type == "CA"
       ansible.builtin.copy:
         src: "../../tests/certs/{{ bundle.name }}"
         dest: "/tmp/{{ bundle.name }}"
