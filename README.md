@@ -115,7 +115,8 @@ Here you can put your change to keep a trace of your work and decisions.
 
 * Added support for new CI base
 * Edit all vars with __
-* Tested and validated on Docker Dind
+* Tested and validated on Docker
+* Added support for Debian 11/12 and Ubuntu
 
 ### 2024-03-03: New CICD and fixes
 
