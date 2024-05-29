@@ -3,5 +3,5 @@
   tags:
       - "labocbz.deploy_portainer"
   vars:
-    tower_env: "cicd-debian-12"
+    tower_env: "cicd-docker-dind"
   ansible.builtin.import_playbook: "../../playbook.yml"
