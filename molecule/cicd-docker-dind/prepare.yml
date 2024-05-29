@@ -1,7 +1,7 @@
 ---
 # if you have any prepararion task
 - name: "Prepare"
-  hosts: "cicd-ubuntu-22"
+  hosts: "cicd-debian-12"
   gather_facts: true
   tasks:
 
@@ -17,11 +17,11 @@
     - name: "Gather facts from all hosts"
       delegate_to: "{{ item }}"
       delegate_facts: true
-      loop: "{{ groups['cicd-ubuntu-22'] }}"
+      loop: "{{ groups['cicd-debian-12'] }}"
       ansible.builtin.setup:
 
     - name: "Edit /etc/hosts file to add all hosts"
-      loop: "{{ groups['cicd-ubuntu-22'] }}"
+      loop: "{{ groups['cicd-debian-12'] }}"
       loop_control:
         loop_var: host
       register: output
@@ -38,7 +38,7 @@
         dest: "/tmp/{{ bundle.name }}.zip"
         owner: "root"
         group: "root"
-        mode: 0700
+        mode: "0700"
 
     - name: "Import cryptographic content if needed (CA)"
       loop: "{{ inv_docker_cert_bundles }}"
@@ -50,7 +50,7 @@
         dest: "/tmp/{{ bundle.name }}"
         owner: "root"
         group: "root"
-        mode: 0700
+        mode: "0700"
 
     - name: "Import cryptographic content if needed (cert)"
       loop: "{{ inv_add_apache_confs__configurations_cert_bundles }}"
@@ -62,7 +62,7 @@
         dest: "/tmp/{{ bundle.name }}.zip"
         owner: "root"
         group: "root"
-        mode: 0700
+        mode: "0700"
 
     - name: "Import cryptographic content if needed (CA)"
       loop: "{{ inv_add_apache_confs__configurations_cert_bundles }}"
@@ -74,4 +74,4 @@
         dest: "/tmp/{{ bundle.name }}"
         owner: "root"
         group: "root"
-        mode: 0700
+        mode: "0700"
