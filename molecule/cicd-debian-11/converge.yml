@@ -1,7 +1,0 @@
----
-- name: "Include labocbz.deploy_portainer playbook"
-  tags:
-      - "labocbz.deploy_portainer"
-  vars:
-    tower_env: "cicd-debian-11"
-  ansible.builtin.import_playbook: "../../playbook.yml"

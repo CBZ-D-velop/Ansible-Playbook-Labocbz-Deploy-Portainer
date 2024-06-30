@@ -23,7 +23,7 @@ This Ansible playbook offers a streamlined and automated approach to deploying a
 
 ## Deployment diagramm
 
-![](./assets/Ansible-Playbook-Labocbz-Deploy-Portainer.drawio.svg)
+![Ansible-Playbook-Labocbz-Deploy-Portainer](./assets/Ansible-Playbook-Labocbz-Deploy-Portainer.drawio.svg)
 
 Here is a potential deployment scenario using the playbook. We can observe that Portainer is installed on the same host as Apache2, which then functions as an SSL/TLS reverse proxy, WAF, QoS, Auth, etc. Portainer is primarily used for administering other servers, which connect through the default client port 8000 and cannot be included in the reverse proxy.
 
@@ -34,7 +34,6 @@ Here is a potential deployment scenario using the playbook. We can observe that 
 You have to run multiples tests. *tests with an # are mandatory*
 
 ```MARKDOWN
-# lint
 # syntax
 # converge
 # idempotence
@@ -59,7 +58,6 @@ yamllint -c ./.yamllint .
 ansible-lint --config=./.ansible-lint .
 
 # Execute and test your playbook
-molecule lint
 molecule create
 molecule list
 molecule converge
@@ -126,6 +124,14 @@ Here you can put your change to keep a trace of your work and decisions.
 * Edited vars for linting (role name and __)
 * Added generic support for Docker dind (can add used for obscures reasons ... user in use)
 * Fix idempotency
+
+### 2024-05-19: New CI
+
+* Added Markdown lint to the CICD
+* Rework all Docker images
+* Change CICD vars convention
+* New workers
+* Removed all automation based on branch
 
 ## Authors
 

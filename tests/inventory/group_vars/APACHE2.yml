@@ -1,5 +1,5 @@
 ---
-inv_install_apache: true
+inv_install_apache: false
 
 inv_prepare_host__apache_system_users:
   - login: "www-data"
